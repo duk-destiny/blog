@@ -22,15 +22,15 @@ export const contentItems: ContentItem[] = [
   {
     id: 1,
     type: 'project',
-    path: 'issssa.top',
+    path: 'https://issssa.top',
     path2: 'https://github.com/duk-destiny/blog',
     title: {
       zh: '个人博客网站',
       en: 'Personal Blog Website'
     },
     summary: {
-      zh: '基于react，tailwindcss和docsify的个人博客网站',
-      en: 'Personal blog website built with React, tailwindcss, and docsify'
+      zh: '基于react，tailwindcss的个人博客网站',
+      en: 'Personal blog website built with React, tailwindcss'
     },
     date: '2026-04-25',
     category: 'frontend',
@@ -43,22 +43,22 @@ export const contentItems: ContentItem[] = [
     {
     id: 2,
     type: 'project',
-    path: '/notes.issssa.top',
-    path2: 'https://github.com/duk-destiny/presonal-studynotes',
+    path: 'https://notes.issssa.top',
+    path2: 'https://github.com/duk-destiny/personal-studynotes',
     title: {
-      zh: '个人笔记',
-      en: 'Personal Notes'
+      zh: '学习笔记',
+      en: 'Learning Notes'
     },
     summary: {
-      zh: '学习笔记',
-      en: 'Learning notes'
+      zh: '算法/框架/工具等学习笔记记录',
+      en: 'Learning notes for algorithms, frameworks, tools, etc. records'
     },
     date: '2026-04-25',
     category: 'frontend',
     readTime: 10,
     tags: {
-      zh: ['docsify', '前端', '个人笔记'],
-      en: ['docsify', 'Frontend', 'Personal Notes']
+      zh: ['vue', '前端', '个人笔记'],
+      en: ['vue', 'Frontend', 'Personal Notes']
     }
   },
 ];
