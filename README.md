@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# -
 一个用来记录学习历程的小博客
 =======
 # Personal Blog
@@ -126,4 +124,3 @@ git push -f git@github.com:username/repo.git main:gh-pages
 ## 📝 许可
 
 MIT License
->>>>>>> master
