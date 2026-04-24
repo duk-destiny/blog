@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-# -
-一个用来记录学习历程的小博客
-=======
+# 一个用来记录学习历程的小博客
+
 # Personal Blog
 
 一个基于 React + TypeScript + Tailwind CSS 构建的现代化个人博客系统。
@@ -126,4 +124,3 @@ git push -f git@github.com:username/repo.git main:gh-pages
 ## 📝 许可
 
 MIT License
->>>>>>> master

@@ -22,8 +22,8 @@ export const contentItems: ContentItem[] = [
   {
     id: 1,
     type: 'project',
-    path: '/article/1',
-    path2: '/project/1',
+    path: 'issssa.top',
+    path2: 'https://github.com/duk-destiny/blog',
     title: {
       zh: '个人博客网站',
       en: 'Personal Blog Website'
@@ -43,8 +43,8 @@ export const contentItems: ContentItem[] = [
     {
     id: 2,
     type: 'project',
-    path: '/article/1',
-    path2: '/project/1',
+    path: '/notes.issssa.top',
+    path2: 'https://github.com/duk-destiny/presonal-studynotes',
     title: {
       zh: '个人笔记',
       en: 'Personal Notes'
