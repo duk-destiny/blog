@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { siteConfig } from '@/config/siteConfig';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ContributionData {
   date: string;
@@ -16,6 +17,7 @@ export default function GitHubContributions() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [contributionData, setContributionData] = useState<ContributionData[]>([]);
   const username = getGitHubUsername(siteConfig.comments.repo);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (!username) return;
@@ -24,7 +26,18 @@ export default function GitHubContributions() {
       .then(res => res.json())
       .then(json => {
         if (json.contributions) {
-          setContributionData(json.contributions.slice(-52 * 7));
+          const today = new Date();
+          const oneYearAgo = new Date(today);
+          oneYearAgo.setFullYear(today.getFullYear() - 1);
+
+          const recentData = json.contributions
+            .filter((item: any) => {
+              const date = new Date(item.date);
+              return date >= oneYearAgo && date <= today;
+            })
+            .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+          setContributionData(recentData);
         }
       })
       .catch(err => console.error('Failed to fetch contributions:', err));
@@ -42,7 +55,7 @@ export default function GitHubContributions() {
     const weeks = 52;
     const days = 7;
 
-    canvas.width = weeks * (cellSize + cellGap) + 40;
+    canvas.width = weeks * (cellSize + cellGap) + 50;
     canvas.height = days * (cellSize + cellGap) + 30;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,45 +73,66 @@ export default function GitHubContributions() {
     ctx.font = '10px -apple-system, BlinkMacSystemFont, sans-serif';
     ctx.fillStyle = '#768390';
 
-    const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+    const dayLabels = ['Sun', '', 'Tue', '', 'Thu', '', 'Sat'];
     dayLabels.forEach((label, i) => {
       if (label) {
         ctx.fillText(label, 0, 20 + i * (cellSize + cellGap) + cellSize - 2);
       }
     });
 
+    const today = new Date();
+    const endDate = new Date(today);
+    endDate.setDate(endDate.getDate() - (today.getDay()));
+
+    const startDate = new Date(endDate);
+    startDate.setDate(startDate.getDate() - (weeks * 7) + 7);
+
+    const dataMap = new Map();
+    contributionData.forEach(item => {
+      dataMap.set(item.date, item);
+    });
+
     const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let lastMonth = -1;
-    contributionData.forEach((data, i) => {
-      const date = new Date(data.date);
-      const month = date.getMonth();
-      const week = Math.floor(i / 7);
 
-      if (month !== lastMonth) {
-        ctx.fillText(monthLabels[month], 35 + week * (cellSize + cellGap), 12);
-        lastMonth = month;
+    for (let week = 0; week < weeks; week++) {
+      for (let day = 0; day < days; day++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(currentDate.getDate() + (week * 7) + day);
+
+        const dateStr = currentDate.toISOString().split('T')[0];
+        const data = dataMap.get(dateStr);
+
+        const x = 35 + week * (cellSize + cellGap);
+        const y = 20 + day * (cellSize + cellGap);
+
+        if (data) {
+          ctx.fillStyle = levelColors[data.level] || colors.empty;
+        } else {
+          ctx.fillStyle = colors.empty;
+        }
+
+        ctx.beginPath();
+        ctx.roundRect(x, y, cellSize, cellSize, 2);
+        ctx.fill();
+
+        if (day === 0 && week > 0) {
+          const month = currentDate.getMonth();
+          if (month !== lastMonth) {
+            ctx.fillStyle = '#768390';
+            ctx.fillText(monthLabels[month], x, 12);
+            lastMonth = month;
+          }
+        }
       }
-    });
-
-    contributionData.forEach((data, i) => {
-      const week = Math.floor(i / 7);
-      const day = i % 7;
-
-      const x = 35 + week * (cellSize + cellGap);
-      const y = 20 + day * (cellSize + cellGap);
-
-      ctx.fillStyle = levelColors[data.level] || colors.empty;
-      ctx.beginPath();
-      ctx.roundRect(x, y, cellSize, cellSize, 2);
-      ctx.fill();
-    });
+    }
   }, [contributionData]);
 
   if (!username) {
     return (
       <div className="text-center py-8">
         <p className="text-gray-500 dark:text-gray-400">
-          请在 siteConfig 中配置 comments.repo 以显示贡献图
+          {t('configureRepo')}
         </p>
       </div>
     );
@@ -106,7 +140,7 @@ export default function GitHubContributions() {
 
   return (
     <div className="py-8">
-      <h2 className="text-2xl font-bold mb-6 text-center">GitHub 贡献</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">{t('githubContributions')}</h2>
       <div className="overflow-x-auto pb-4">
         <div className="min-w-[800px]">
           <canvas ref={canvasRef} className="mx-auto" />
@@ -124,7 +158,7 @@ export default function GitHubContributions() {
         <span>More</span>
       </div>
       <p className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
-        查看更多：<a href={siteConfig.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{username}</a>
+        {t('viewMore')}：<a href={siteConfig.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{username}</a>
       </p>
     </div>
   );

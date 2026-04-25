@@ -29,13 +29,13 @@ export default function Archive() {
       <div className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 
+            <h1
               ref={ref as React.RefObject<HTMLHeadingElement>}
               className={`text-4xl font-bold mb-12 text-center ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
             >
               {t('archive')}
             </h1>
-            
+
             <div className="space-y-8 animate-fade-up">
               {Object.entries(archive).map(([year, months], yearIndex) => (
                 <div key={year} className="animate-fade-up" style={{ animationDelay: `${yearIndex * 0.1}s` }}>
@@ -56,8 +56,8 @@ export default function Archive() {
                               <li key={article.id} className="animate-fade-up" style={{ animationDelay: `${(yearIndex * 0.1) + (monthIndex * 0.05) + (articleIndex * 0.02)}s` }}>
                                 <div className="flex flex-col">
                                   <div className="flex items-center gap-2">
-                                    <a 
-                                      href={article.path} 
+                                    <a
+                                      href={article.path}
                                       className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors flex-1"
                                     >
                                       {article.title[language]}

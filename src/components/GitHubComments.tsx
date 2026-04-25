@@ -58,7 +58,7 @@ export default function GitHubComments({ path, title }: GitHubCommentsProps) {
       <div ref={commentsRef} className="comments-container min-h-[200px]">
         {!isLoaded && (
           <div className="flex items-center justify-center h-40">
-            <p className="text-gray-500 dark:text-gray-400">加载评论中...</p>
+            <p className="text-gray-500 dark:text-gray-400">{t('loadingComments')}</p>
           </div>
         )}
       </div>

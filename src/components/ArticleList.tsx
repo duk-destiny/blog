@@ -40,7 +40,7 @@ export const contentItems: ContentItem[] = [
       en: ['React', 'Frontend', 'Personal Blog']
     }
   },
-    {
+  {
     id: 2,
     type: 'project',
     path: 'https://notes.issssa.top',
@@ -80,14 +80,14 @@ export default function ArticleList({ searchQuery }: ArticleListProps) {
   });
 
   return (
-    <section id="articles" className="py-16 bg-white dark:bg-dark-bg">
+    <section id="articles" className="py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2
             ref={titleRef as React.RefObject<HTMLHeadingElement>}
             className={`text-3xl font-bold mb-12 text-center ${titleVisible ? 'animate-fade-up' : 'opacity-0'}`}
           >
-            {searchQuery ? t('searchResults', searchQuery) : '精选内容'}
+            {searchQuery ? t('searchResults', searchQuery) : t('featuredContent')}
           </h2>
 
           {/* 搜索结果为空提示 */}
@@ -128,7 +128,7 @@ const tagColors = {
   'New Features': 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
   'Type System': 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
   'Blog': 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
-    '大模型': 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+  '大模型': 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
   'LLM': 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
   'GPT': 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
   'AI': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
@@ -197,8 +197,8 @@ function ContentCard({ item, index }: { item: ContentItem; index: number }) {
 
       <div className="flex flex-wrap gap-2">
         {item.tags[language].map((tag, tagIndex) => (
-          <span 
-            key={tagIndex} 
+          <span
+            key={tagIndex}
             className={`px-3 py-1 text-sm rounded-full ${tagColors[tag as keyof typeof tagColors] || 'bg-gray-100 text-gray-700 dark:bg-dark-card dark:text-gray-400'}`}
           >
             {tag}

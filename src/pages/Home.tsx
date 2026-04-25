@@ -33,7 +33,7 @@ export default function Home() {
     <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
       <Layout>
         <Hero />
-        <section className="py-16 bg-white dark:bg-dark-bg">
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <GitHubContributions />

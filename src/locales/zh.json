@@ -49,5 +49,18 @@
   "contact": "联系方式",
   "email": "邮箱",
   "blog": "博客",
-  "knowledgeBase": "知识库"
+  "knowledgeBase": "知识库",
+  "featuredContent": "精选内容",
+  "githubContributions": "GitHub 贡献",
+  "viewMore": "查看更多",
+  "projects": "项目",
+  "start": "开始",
+  "learning": "学习中",
+  "heroQuote": "记录自己的学习历程，分享知识与经验",
+  "loadingComments": "加载评论中...",
+  "configureRepo": "请在 siteConfig 中配置 comments.repo 以显示贡献图",
+  "viewProjects": "查看项目",
+  "viewNotes": "查看笔记",
+  "started": "开始",
+  "learning": "学习中"
 }

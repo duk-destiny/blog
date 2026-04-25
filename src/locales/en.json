@@ -49,5 +49,18 @@
   "contact": "Contact",
   "email": "Email",
   "blog": "Blog",
-  "knowledgeBase": "Knowledge Base"
+  "knowledgeBase": "Knowledge Base",
+  "featuredContent": "Featured Content",
+  "githubContributions": "GitHub Contributions",
+  "viewMore": "View more",
+  "projects": "Projects",
+  "start": "Start",
+  "learning": "Learning",
+  "heroQuote": "Recording my learning journey, sharing knowledge and experience",
+  "loadingComments": "Loading comments...",
+  "configureRepo": "Please configure comments.repo in siteConfig to show contribution graph",
+  "viewProjects": "View projects",
+  "viewNotes": "View notes",
+  "started": "Started",
+  "learning": "Learning"
 }

@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref as React.RefObject<HTMLElement>}
-      className={`bg-gray-50 dark:bg-dark-card py-12 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
+      className={`py-12 ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
     >
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
