@@ -2,7 +2,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/siteConfig';
 import ScrambleText from './ScrambleText';
 import Tilt from './Tilt';
-import { Github, Mail, FileText, ChevronDown, Code2, BookOpen, Calendar, Sparkles } from 'lucide-react';
+import { Github, Mail, FileText, ChevronDown, Mouse, Code2, BookOpen, Calendar, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   const { t, language } = useLanguage();
@@ -49,20 +49,6 @@ export default function Hero() {
             </p>
           </Tilt>
 
-          {/* 身份标签（统一浅蓝底）+ 鼠标 3D 倾斜跟随 + 错位出场 */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10 stagger-fade">
-            {siteConfig.user.roles[language].map((role) => (
-              <Tilt
-                key={role}
-                max={12}
-                scale={1.08}
-                className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary border border-primary/20 dark:bg-primary/15 dark:text-primary/90 dark:border-primary/30 inline-block"
-              >
-                {role}
-              </Tilt>
-            ))}
-          </div>
-
           {/* 统计信息 + 鼠标 3D 倾斜跟随 + 错位出场 */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10 stagger-fade">
             {stats.map((stat) => (
@@ -104,11 +90,12 @@ export default function Hero() {
           {/* 滚动提示 */}
           <a
             href="#projects"
-            className="inline-flex flex-col items-center text-gray-400 hover:text-primary transition-colors animate-bounce"
+            className="inline-flex flex-col items-center text-gray-400 hover:text-primary transition-colors animate-bounce mt-[13rem]"
             aria-label={t('scroll')}
           >
-            <span className="text-sm mb-1">{t('scroll')}</span>
-            <ChevronDown className="w-5 h-5" />
+            <span className="text-base mb-1">{t('scroll')}</span>
+            <Mouse className="w-7 h-7 mb-1" />
+            <ChevronDown className="w-7 h-7" />
           </a>
         </div>
       </div>
