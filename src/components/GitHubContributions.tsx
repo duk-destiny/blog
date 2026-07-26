@@ -147,7 +147,7 @@ export default function GitHubContributions() {
         </div>
       </div>
       <div className="flex items-center justify-end gap-2 mt-4 text-sm text-gray-500 dark:text-gray-400">
-        <span>Less</span>
+        <span>{t('less')}</span>
         <div className="flex gap-1">
           <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#ebedf0' }} />
           <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#9be9a8' }} />
@@ -155,7 +155,7 @@ export default function GitHubContributions() {
           <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#30a14e' }} />
           <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#216e39' }} />
         </div>
-        <span>More</span>
+        <span>{t('more')}</span>
       </div>
       <p className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
         {t('viewMore')}：<a href={siteConfig.socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{username}</a>

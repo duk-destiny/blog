@@ -50,9 +50,9 @@ export default function Categories() {
                       onClick={() => handleCategoryClick(category)}
                       className="w-full flex justify-between items-center p-4 bg-gray-50 dark:bg-dark-card rounded-lg hover:bg-gray-100 dark:hover:bg-dark-card/80 transition-all duration-300"
                     >
-                      <h2 className="text-xl font-semibold">{t(category)}</h2>
+                      <h2 className="text-xl font-semibold">{t(category as any)}</h2>
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {categoryArticles.length} {categoryArticles.length === 1 ? t('article') : t('articles')}
+                        {categoryArticles.length} {t('contentCount')}
                       </span>
                     </button>
                     
