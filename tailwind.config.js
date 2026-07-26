@@ -9,16 +9,17 @@ export default {
     },
     extend: {
       colors: {
-        primary: '#3b82f6',
+        primary: '#3b82f6', // 清爽冷蓝主色
         dark: {
-          bg: '#121212',
-          card: '#1e1e1e',
-          text: '#e0e0e0',
+          bg: '#0f172a', // 冷深蓝
+          card: '#1e293b', // 冷蓝卡面
+          text: '#e2e8f0', // 冷白
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        serif: ['"Noto Serif SC"', '"Noto Serif"', '"Songti SC"', '"SimSun"', 'Georgia', 'serif'],
       },
     },
   },

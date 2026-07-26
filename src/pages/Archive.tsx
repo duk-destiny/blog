@@ -48,7 +48,7 @@ export default function Archive() {
                           <h3 className="text-lg font-semibold mb-2">
                             {monthNames[month as keyof typeof monthNames][language]}
                             <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
-                              ({articles.length} {articles.length === 1 ? t('article') : t('articles')})
+                              ({articles.length} {t('contentCount')})
                             </span>
                           </h3>
                           <ul className="space-y-3">

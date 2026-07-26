@@ -1,0 +1,118 @@
+{
+  "v1": {
+    "zh": {
+      "label": "第一版 · 2026 开源实战版（2026.07）",
+      "displayName": "issssa · 和弦",
+      "role": "大模型应用工程师 · AI 工程方向",
+      "bio": "专注大模型应用工程化，擅长检索增强生成（RAG）、Agent / Tool 工作流编排与本地模型部署；具备医疗合规 RAG 系统的端到端交付经验，注重工程可靠性与技术沉淀。",
+      "email": "2775089477@qq.com",
+      "github": "github.com/duk-destiny",
+      "skills": [
+        {
+          "title": "编程语言",
+          "items": "Python、C++"
+        },
+        {
+          "title": "大模型框架",
+          "items": "LangChain、LangGraph、AutoGen"
+        },
+        {
+          "title": "模型服务与 API",
+          "items": "FastAPI、LangServe、Gradio"
+        },
+        {
+          "title": "检索增强 RAG",
+          "items": "混合检索、知识图谱多跳推理、反思闭环、全流程可溯源"
+        },
+        {
+          "title": "工具链",
+          "items": "MCP、Skill、Tool、多步工作流编排"
+        },
+        {
+          "title": "AI 辅助开发",
+          "items": "Codex、WorkBuddy、CC"
+        },
+        {
+          "title": "算法与训练",
+          "items": "深度学习（CNN / RNN / Transformer）、云环境训练"
+        }
+      ],
+      "projects": [
+        {
+          "name": "医疗合规 RAG 系统",
+          "stack": "Python · LangChain · LangGraph · FastAPI · LangServe · 向量数据库",
+          "time": "进行中（准备部署至 Render）",
+          "points": [
+            "面向医疗场景的检索增强生成系统，在传统 RAG 上叠加多层增强机制，确保回答可信、可溯、可审计。",
+            "合规护栏双层过滤、LangGraph 自我反思重检闭环，降低幻觉率、提升事实准确性。",
+            "医学知识图谱多跳推理突破单跳检索局限；分层长期记忆支持个性化连续咨询。",
+            "每次回答附带完整引用链路与审计日志，满足医疗场景对可解释性与合规审计的刚性需求。"
+          ]
+        }
+      ],
+      "evaluations": [
+        "具备大模型应用从原型到产品交付的端到端能力，重视可靠性、可解释性与可审计性。",
+        "熟悉 LangChain / LangGraph 生态与 RAG 工程化，能独立设计含合规护栏与反思闭环的复杂系统。",
+        "注重代码质量与文档沉淀，习惯将工程经验整理复用。",
+        "以产品交付标准要求产出，善于借助 AI 辅助开发工具显著提升工程效率。"
+      ]
+    },
+    "en": {
+      "label": "v1 · 2026 Open Source Edition (2026.07)",
+      "displayName": "issssa",
+      "role": "LLM Application Engineer · AI Engineering",
+      "bio": "Focused on engineering LLM applications, specializing in RAG, Agent/Tool workflow orchestration, and local model deployment. Experienced in end-to-end delivery of medical compliance RAG systems, with a strong focus on engineering reliability and knowledge accumulation.",
+      "email": "2775089477@qq.com",
+      "github": "github.com/duk-destiny",
+      "skills": [
+        {
+          "title": "Programming Languages",
+          "items": "Python、C++"
+        },
+        {
+          "title": "LLM Frameworks",
+          "items": "LangChain、LangGraph、AutoGen"
+        },
+        {
+          "title": "Model Service & API",
+          "items": "FastAPI、LangServe、Gradio"
+        },
+        {
+          "title": "Retrieval-Augmented RAG",
+          "items": "Hybrid Search, Knowledge Graph Multi-hop Reasoning, Reflection Loop, Full Traceability"
+        },
+        {
+          "title": "Toolchain",
+          "items": "MCP, Skill, Tool, Multi-step Workflow Orchestration"
+        },
+        {
+          "title": "AI-Assisted Development",
+          "items": "Codex、WorkBuddy、CC"
+        },
+        {
+          "title": "Algorithms & Training",
+          "items": "Deep Learning (CNN / RNN / Transformer), Cloud Training"
+        }
+      ],
+      "projects": [
+        {
+          "name": "Medical Compliance RAG System",
+          "stack": "Python · LangChain · LangGraph · FastAPI · LangServe · Vector Database",
+          "time": "In Progress (Preparing to deploy to Render)",
+          "points": [
+            "A Retrieval-Augmented Generation system for medical scenarios, layering multiple enhancement mechanisms on top of traditional RAG to ensure trustworthy, traceable, and auditable answers.",
+            "Dual-layer compliance guardrail filtering and LangGraph self-reflection re-check loop, reducing hallucination rates and improving factual accuracy.",
+            "Medical knowledge graph multi-hop reasoning overcoming single-hop retrieval limitations; layered long-term memory enabling personalized continuous consultations.",
+            "Every response includes a complete citation chain and audit log, meeting the rigid requirements for explainability and compliance auditing in medical scenarios."
+          ]
+        }
+      ],
+      "evaluations": [
+        "End-to-end capability in delivering LLM applications from prototype to production, prioritizing reliability, explainability, and auditability.",
+        "Proficient in the LangChain/LangGraph ecosystem and RAG engineering, capable of independently designing complex systems with compliance guardrails and self-reflection loops.",
+        "Emphasizes code quality and documentation, accustomed to organizing and reusing engineering experience.",
+        "Holds output to product delivery standards, skilled at leveraging AI-assisted development tools to significantly improve engineering efficiency."
+      ]
+    }
+  }
+}
