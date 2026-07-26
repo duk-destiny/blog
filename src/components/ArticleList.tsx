@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/siteConfig';
 import { Github, ExternalLink } from 'lucide-react';
+import { projectItems } from '@/content/projects';
+import { blogItems } from '@/content/blogs';
 
 export interface ContentItem {
   id: number;
@@ -15,53 +18,14 @@ export interface ContentItem {
   category: string;
   readTime?: number;
   tags: { zh: string[]; en: string[] };
+  slug?: string;                       // 博客唯一标识（由 add-blog 脚本生成）
+  body?: { zh: string; en: string };   // 博客正文 Markdown（由 add-blog 脚本解析）
 }
 
 // 导出内容数据供其他组件使用
-export const contentItems: ContentItem[] = [
-  {
-    id: 1,
-    type: 'project',
-    path: 'https://issssa.top',
-    path2: 'https://github.com/duk-destiny/blog',
-    title: {
-      zh: '个人博客网站',
-      en: 'Personal Blog Website'
-    },
-    summary: {
-      zh: '基于react，tailwindcss的个人博客网站',
-      en: 'Personal blog website built with React, tailwindcss'
-    },
-    date: '2026-04-25',
-    category: 'frontend',
-    readTime: 10,
-    tags: {
-      zh: ['React', '前端', '个人博客'],
-      en: ['React', 'Frontend', 'Personal Blog']
-    }
-  },
-  {
-    id: 2,
-    type: 'project',
-    path: 'https://notes.issssa.top',
-    path2: 'https://github.com/duk-destiny/personal-studynotes',
-    title: {
-      zh: '学习笔记',
-      en: 'Learning Notes'
-    },
-    summary: {
-      zh: '算法/框架/工具等学习笔记记录',
-      en: 'Learning notes for algorithms, frameworks, tools, etc. records'
-    },
-    date: '2026-04-25',
-    category: 'frontend',
-    readTime: 10,
-    tags: {
-      zh: ['vue', '前端', '个人笔记'],
-      en: ['vue', 'Frontend', 'Personal Notes']
-    }
-  },
-];
+// 精选项目来自 src/content/projects.ts（add-project 脚本生成）
+// 博客文章来自 src/content/blogs.ts（add-blog 脚本生成）
+export const contentItems: ContentItem[] = [...projectItems, ...blogItems];
 
 interface ArticleListProps {
   searchQuery: string;
@@ -87,7 +51,7 @@ export default function ArticleList({ searchQuery }: ArticleListProps) {
             ref={titleRef as React.RefObject<HTMLHeadingElement>}
             className={`text-3xl font-bold mb-12 text-center ${titleVisible ? 'animate-fade-up' : 'opacity-0'}`}
           >
-            {searchQuery ? t('searchResults', searchQuery) : t('featuredContent')}
+            {searchQuery ? `${t('searchResults')}: ${searchQuery}` : t('featuredContent')}
           </h2>
 
           {/* 搜索结果为空提示 */}
@@ -155,7 +119,9 @@ function ContentCard({ item, index }: { item: ContentItem; index: number }) {
     >
       <div className="flex justify-between items-start mb-3">
         <h3 className="text-xl font-bold">
-          {item.title[language]}
+          <Link to={`/article/${item.id}`} className="hover:text-primary transition-colors">
+            {item.title[language]}
+          </Link>
         </h3>
         <div className="flex gap-2">
           {/* 第一个路径图标 */}
