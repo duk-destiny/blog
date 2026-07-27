@@ -13,8 +13,8 @@
     "i18n:types": "node i18n-tools/generate-types.cjs",
     "i18n:sync": "npm run i18n:scan && npm run i18n:types",
     "resume:new": "node scripts/resume-version/new-resume-version.mjs",
-    "blog:add": "node scripts/add-blog.mjs",
-    "project:add": "node scripts/add-project.mjs"
+    "blog:add": "node scripts/add-blog/add-blog.mjs",
+    "project:add": "node scripts/add-project/add-project.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -20,8 +20,16 @@ export const projectItems: ContentItem[] = [
     "category": "practicalProjects",
     "readTime": 10,
     "tags": {
-      "zh": ["React", "前端", "个人博客"],
-      "en": ["React", "Frontend", "Personal Blog"]
+      "zh": [
+        "React",
+        "前端",
+        "个人博客"
+      ],
+      "en": [
+        "React",
+        "Frontend",
+        "Personal Blog"
+      ]
     }
   },
   {
@@ -41,8 +49,42 @@ export const projectItems: ContentItem[] = [
     "category": "practicalProjects",
     "readTime": 10,
     "tags": {
-      "zh": ["vue", "前端", "学习笔记站"],
-      "en": ["vue", "Frontend", "Personal Notes"]
+      "zh": [
+        "vue",
+        "前端",
+        "学习笔记站"
+      ],
+      "en": [
+        "vue",
+        "Frontend",
+        "Personal Notes"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "type": "project",
+    "path": "https://github.com/duk-destiny/practical-skills",
+    "title": {
+      "zh": "个人skills合集",
+      "en": "practical-skills"
+    },
+    "summary": {
+      "zh": "一个涵盖多应用场景的 AI Skills 集合",
+      "en": "A collection of AI Skills covering multiple application scenarios"
+    },
+    "date": "2026-07-27",
+    "category": "practicalProjects",
+    "readTime": 10,
+    "tags": {
+      "zh": [
+        "AI应用",
+        "skills"
+      ],
+      "en": [
+        "AI applications",
+        "skills"
+      ]
     }
   }
 ];
