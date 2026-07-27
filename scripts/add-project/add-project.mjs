@@ -24,7 +24,7 @@ import readline from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '..', '..');
 const jsonFile = path.join(root, 'src', 'content', 'projects.json');
 const tsFile = path.join(root, 'src', 'content', 'projects.ts');
 
@@ -63,8 +63,20 @@ async function main() {
   const readTime = await ask('阅读分钟数', '10');
   const tagsZh = await ask('中文标签 (逗号分隔)', '项目');
   const tagsEn = await ask('英文标签 (逗号分隔)', 'Project');
-  const path1 = await ask('主链接 (https://...)', '');
-  const path2 = await ask('次链接/仓库 (https://...)', '');
+
+  // 先询问是否有部署链接
+  const deployed = await ask('是否已有部署链接？（y/n）', 'n');
+  const hasDeploy = deployed.toLowerCase() === 'y' || deployed.toLowerCase() === 'yes';
+
+  let path1 = '';
+  let path2 = '';
+
+  if (hasDeploy) {
+    path1 = await ask('部署链接 (https://...)', '');
+    path2 = await ask('GitHub 仓库链接 (https://...)', '');
+  } else {
+    path1 = await ask('GitHub 仓库链接 (https://...)', '');
+  }
 
   if (!titleZh || !titleEn) {
     console.error('❌ 项目名不能为空');

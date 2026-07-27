@@ -41,7 +41,7 @@ import { fileURLToPath } from 'node:url';
 import { load as yamlLoad } from 'js-yaml';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '..', '..');
 const blogsDir = path.join(root, 'blogs');
 const outFile = path.join(root, 'src', 'content', 'blogs.ts');
 
