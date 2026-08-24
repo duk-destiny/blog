@@ -86,5 +86,65 @@ export const projectItems: ContentItem[] = [
         "skills"
       ]
     }
+  },
+  {
+    "id": 4,
+    "type": "project",
+    "path": "https://github.com/duk-destiny/Radeon-hackathon-2026-07",
+    "title": {
+      "zh": "办公助理",
+      "en": "Office Agent"
+    },
+    "summary": {
+      "zh": "在AMD芯片上开发的一个私密的、以证据为基础的办公助理。它可以导入项目参考文件和任务列表，检索项目范围证据，评估任务进度，并结合规则和本地适配完成的模型， 并生成可审计的报告捆绑包。",
+      "en": "A private, evidence‑based office assistant developed on AMD chips. It can import project reference files and task lists, retrieve evidence for project scopes, assess task progress, leverage rules and locally adapted completed models, and generate auditable report bundles."
+    },
+    "date": "2026-8-1",
+    "category": "practicalProjects",
+    "readTime": 10,
+    "tags": {
+      "zh": [
+        "黑客松",
+        "AMD模型适配",
+        "AI应用"
+      ],
+      "en": [
+        "Hackathon",
+        "AMD model adaptation",
+        "AI applications"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "type": "project",
+    "path": "https://github.com/duk-destiny/Smart-Construction-Site-Guardian",
+    "title": {
+      "zh": "智能施工工地守护者",
+      "en": "Smart Construction Site · Construction safety intelligent system"
+    },
+    "summary": {
+      "zh": "一套从「视觉感知 → 规范检索 → 风险定级 → 闭环处置 → 人工纠偏 → 复训回写」端到端打通的施工安全智能体，兼顾研判深度（多 Agent 协同、RAG 条款引用、证据链可追溯）与告警时效（实时链路首帧出警、规则驱动、无阻塞推理）",
+      "en": "A construction safety intelligent system integrates end-to-end processes from \"visual perception → standard retrieval → risk grading → closed-loop handling→ manual correction → retraining and rewriting,\" balancing deep judgment(multi-agent collaboration, RAG clause citation, evidence chain traceability) and alert timeliness (real-time first-frame alert alert, rule-driven, non-blocking reasoning)."
+    },
+    "date": "2026-07-28",
+    "category": "practicalProjects",
+    "readTime": 20,
+    "tags": {
+      "zh": [
+        "施工安全智能体",
+        "多 Agent 编排",
+        "RAG",
+        "自训练YOLOv8‑ONNX",
+        "离线部署"
+      ],
+      "en": [
+        "Construction Safety Agent",
+        "Multi‑Agent Orchestration",
+        "Retrieval‑Augmented Generation",
+        "Self‑trained YOLOv8‑ONNX",
+        "Offline Deployment"
+      ]
+    }
   }
 ];
