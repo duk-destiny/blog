@@ -36,6 +36,7 @@ export const siteConfig = {
   // 社交媒体链接
   socialLinks: {
     github: 'https://github.com/duk-destiny',
+    csdn: 'https://blog.csdn.net/2401_87653039?type=blog',
     qq: 'https://qm.qq.com/q/U5wWcPNRKy',
     email: 'mailto:2775089477@qq.com',
     resume: '/resume'

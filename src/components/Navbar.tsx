@@ -95,7 +95,7 @@ export default function Navbar() {
 
       <div className="hidden md:block w-px h-5 bg-slate-300/60 dark:bg-slate-600/60 mx-1" />
 
-      {/* 右侧三个图标 */}
+      {/* 右侧图标 */}
       <div className="flex items-center gap-0.5">
         <a
           href={siteConfig.socialLinks.github}

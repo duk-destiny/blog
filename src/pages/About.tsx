@@ -1,48 +1,66 @@
+import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useLanguage } from '@/hooks/useLanguage';
 import Layout from '@/components/Layout';
+import { siteConfig } from '@/config/siteConfig';
+import type { TranslationKeys } from '@/i18n-resources';
+import { ArrowUpRight, Github, Mail, BookOpen } from 'lucide-react';
 
-type SkillItem = string | { key: string };
-type SkillGroup = { titleKey: string; items: SkillItem[] };
+type SkillItem = string | { key: TranslationKeys };
+type SkillGroup = { titleKey: TranslationKeys; items: SkillItem[] };
 
 const skillGroups: SkillGroup[] = [
-  { titleKey: 'skillProgrammingLang', items: ['Python', 'C++'] },
+  { titleKey: 'skillProgrammingLang', items: ['Python', 'C++', 'TypeScript'] },
   { titleKey: 'skillLLMFrameworks', items: ['LangChain', 'LangGraph', 'AutoGen'] },
-  { titleKey: 'skillModelService', items: ['FastAPI', 'LangServe', 'Gradio'] },
-  { titleKey: 'skillRetrievalRAG', items: [
-    { key: 'aboutHybridSearch' },
-    { key: 'aboutKnowledgeGraph' },
-    { key: 'aboutReflectionLoop' },
-    { key: 'aboutTraceability' }
-  ]},
+  { titleKey: 'skillModelServiceAPI', items: ['FastAPI', 'LangServe', 'Gradio'] },
+  {
+    titleKey: 'skillRetrievalRAG',
+    items: [
+      { key: 'aboutHybridSearch' },
+      { key: 'aboutKnowledgeGraph' },
+      { key: 'aboutReflectionLoop' },
+      { key: 'aboutTraceability' },
+    ],
+  },
+  {
+    titleKey: 'skillVisionAI',
+    items: ['YOLOv8', 'ONNX Runtime', 'OpenCV', { key: 'aboutDetectTrack' }],
+  },
+  {
+    titleKey: 'skillDeployment',
+    items: ['AMD ROCm', 'Ollama', 'llama.cpp', { key: 'aboutOfflineInference' }],
+  },
   { titleKey: 'skillToolchain', items: ['MCP', 'Skill', 'Tool', { key: 'aboutMultiStepWorkflow' }] },
   { titleKey: 'skillAIDev', items: ['Codex', 'WorkBuddy', 'CC'] },
-  { titleKey: 'skillAlgorithms', items: [
-    { key: 'aboutDeepLearning' }, 'Transformer', { key: 'aboutCloudTraining' }
-  ]},
-];
-
-type ProjectEntry = {
-  nameKey: string;
-  descKey: string;
-  stackKey: string;
-  statusKey: string;
-};
-
-const projects: ProjectEntry[] = [
+  { titleKey: 'skillFrontend', items: ['React', 'Vue', 'Tailwind CSS', 'Vite'] },
   {
-    nameKey: 'aboutProjectName',
-    descKey: 'aboutProjectDesc',
-    stackKey: 'aboutProjectStack',
-    statusKey: 'aboutProjectStatus',
+    titleKey: 'skillAlgorithms',
+    items: [{ key: 'aboutDeepLearning' }, 'Transformer', { key: 'aboutCloudTraining' }],
   },
 ];
 
+const journey: { time: string; titleKey: TranslationKeys; descKey: TranslationKeys }[] = [
+  { time: '2026.04', titleKey: 'aboutJ1Title', descKey: 'aboutJ1Desc' },
+  { time: '2026.07', titleKey: 'aboutJ2Title', descKey: 'aboutJ2Desc' },
+  { time: '2026.07', titleKey: 'aboutJ3Title', descKey: 'aboutJ3Desc' },
+  { time: 'now', titleKey: 'aboutJ4Title', descKey: 'aboutJ4Desc' },
+];
+
+const interests: TranslationKeys[] = [
+  'aboutInterest1',
+  'aboutInterest2',
+  'aboutInterest3',
+  'aboutInterest4',
+  'aboutInterest5',
+  'aboutInterest6',
+];
+
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: journeyRef, isVisible: journeyVisible } = useScrollAnimation();
+  const { ref: interestsRef, isVisible: interestsVisible } = useScrollAnimation();
   const { ref: abilityRef, isVisible: abilityVisible } = useScrollAnimation();
-  const { ref: projectRef, isVisible: projectVisible } = useScrollAnimation();
   const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
 
   const sectionTitle = (text: string) => (
@@ -62,17 +80,93 @@ export default function About() {
               ref={heroRef as React.RefObject<HTMLDivElement>}
               className={`text-center mb-14 ${heroVisible ? 'animate-fade-up' : 'opacity-0'}`}
             >
-              <img
-                src="/avatar.jpg"
-                alt="Profile"
-                className="w-28 h-28 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg mx-auto mb-5"
-              />
+              <div className="relative inline-block mb-5">
+                <img
+                  src={siteConfig.user.avatar}
+                  alt="Profile"
+                  className="w-28 h-28 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg ring-4 ring-primary/20"
+                />
+                <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-green-400 border-2 border-white dark:border-gray-800" />
+              </div>
               <h1 className="font-serif text-3xl font-bold text-gray-900 dark:text-gray-100">{t('displayName')}</h1>
               <p className="mt-2 text-primary font-medium">{t('aboutRole')}</p>
               <p className="mt-4 max-w-xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
                 {t('aboutBio')}
               </p>
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <a
+                  href={siteConfig.socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary hover:text-white transition-colors"
+                >
+                  <Github size={16} />
+                  GitHub
+                </a>
+                <a
+                  href={siteConfig.socialLinks.csdn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                >
+                  <BookOpen size={16} />
+                  CSDN
+                </a>
+                <a
+                  href={siteConfig.socialLinks.email}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                >
+                  <Mail size={16} />
+                  {t('email')}
+                </a>
+              </div>
             </div>
+
+            {/* 学习旅程 */}
+            <section
+              ref={journeyRef as React.RefObject<HTMLElement>}
+              className={`mb-12 ${journeyVisible ? 'animate-fade-up' : 'opacity-0'}`}
+            >
+              {sectionTitle(t('aboutJourney'))}
+              <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-6">{t('aboutJourneySubtitle')}</p>
+              <div className="relative border-l border-slate-200 dark:border-slate-700 ml-2 pl-6 space-y-8">
+                {journey.map((item) => (
+                  <div key={item.titleKey} className="relative">
+                    <span className="absolute -left-[30.5px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-primary/20" />
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-md">
+                        {item.time === 'now' ? t('aboutNow') : item.time}
+                      </span>
+                      <h3 className="font-serif text-base font-semibold text-gray-800 dark:text-gray-100">
+                        {t(item.titleKey)}
+                      </h3>
+                    </div>
+                    <p className="mt-1.5 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {t(item.descKey)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* 兴趣与方向 */}
+            <section
+              ref={interestsRef as React.RefObject<HTMLElement>}
+              className={`mb-12 ${interestsVisible ? 'animate-fade-up' : 'opacity-0'}`}
+            >
+              {sectionTitle(t('aboutInterests'))}
+              <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-5">{t('aboutInterestsSubtitle')}</p>
+              <div className="flex flex-wrap gap-2.5">
+                {interests.map((key) => (
+                  <span
+                    key={key}
+                    className="px-4 py-1.5 rounded-full text-sm border border-primary/30 bg-primary/5 text-primary/90 hover:bg-primary hover:text-white hover:border-primary transition-colors cursor-default"
+                  >
+                    {t(key)}
+                  </span>
+                ))}
+              </div>
+            </section>
 
             {/* 专业能力 */}
             <section
@@ -83,12 +177,12 @@ export default function About() {
               <div className="space-y-4">
                 {skillGroups.map((group) => (
                   <div key={group.titleKey} className="flex flex-wrap items-center gap-2">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200 w-28 shrink-0">
-                      {t(group.titleKey as any)}
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200 w-32 shrink-0">
+                      {t(group.titleKey)}
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {group.items.map((item, i) => {
-                        const text = typeof item === 'string' ? item : t(item.key as any);
+                        const text = typeof item === 'string' ? item : t(item.key);
                         return (
                           <span
                             key={typeof item === 'string' ? item : item.key + i}
@@ -104,69 +198,21 @@ export default function About() {
               </div>
             </section>
 
-            {/* 项目经历 */}
-            <section
-              ref={projectRef as React.RefObject<HTMLElement>}
-              className={`mb-12 ${projectVisible ? 'animate-fade-up' : 'opacity-0'}`}
-            >
-              {sectionTitle(t('projectExperience'))}
-              <div className="space-y-4">
-                {projects.map((p) => (
-                  <div
-                    key={p.nameKey}
-                    className="rounded-2xl border border-slate-200 dark:border-slate-700 p-6 bg-white/50 dark:bg-dark-card/50 hover:border-primary/50 transition-colors"
-                  >
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{t(p.nameKey as any)}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3">{t(p.descKey as any)}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                      <span className="font-medium">{t('techStack')}：</span>{t(p.stackKey as any)}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      <span className="font-medium">{t('status')}：</span>{t(p.statusKey as any)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* 联系方式 */}
             <section
               ref={contactRef as React.RefObject<HTMLElement>}
               className={`${contactVisible ? 'animate-fade-up' : 'opacity-0'}`}
             >
-              {sectionTitle(t('contact'))}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a
-                  href="mailto:2775089477@qq.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary transition-colors"
+              <div className="mt-6 text-center">
+                <Link
+                  to="/resume"
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
                 >
-                  <div className="flex items-center">
-                    <span className="mr-3 text-primary">✉</span>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{t('email')}</p>
-                      <p className="text-gray-700 dark:text-gray-300">2775089477@qq.com</p>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  href="https://github.com/duk-destiny"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary transition-colors"
-                >
-                  <div className="flex items-center">
-                    <span className="mr-3 text-primary">↗</span>
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">GitHub</p>
-                      <p className="text-gray-700 dark:text-gray-300">github.com/duk-destiny</p>
-                    </div>
-                  </div>
-                </a>
+                  {t('aboutGoToResume')}
+                  <ArrowUpRight size={16} />
+                </Link>
               </div>
-              <p className="mt-10 text-center text-gray-500 dark:text-gray-400 italic">
-                "Be so good they can't ignore you."
+              <p className="mt-8 text-center text-gray-500 dark:text-gray-400 italic">
+                {language === 'zh' ? siteConfig.user.motto.zh : siteConfig.user.motto.en}
               </p>
             </section>
           </div>

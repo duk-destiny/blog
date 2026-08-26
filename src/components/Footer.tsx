@@ -1,6 +1,6 @@
 import { useLanguage } from '@/hooks/useLanguage';
 import { siteConfig } from '@/config/siteConfig';
-import { Github, Mail, MessageCircle } from 'lucide-react';
+import { Github, Mail, MessageCircle, BookOpen } from 'lucide-react';
 
 export default function Footer() {
   const { t, language } = useLanguage();
@@ -31,6 +31,14 @@ export default function Footer() {
               className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
             >
               <Mail className="w-4 h-4" /> Email
+            </a>
+            <a
+              href={siteConfig.socialLinks.csdn}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+            >
+              <BookOpen className="w-4 h-4" /> CSDN
             </a>
             <a
               href={siteConfig.socialLinks.qq}

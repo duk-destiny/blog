@@ -6,7 +6,8 @@ export function getArticlesByArchive() {
   const archive: { [key: string]: { [key: string]: ContentItem[] } } = {};
 
   contentItems.forEach(item => {
-    const [year, month] = item.date.split('-');
+    const [year, monthRaw] = item.date.split('-');
+    const month = (monthRaw ?? '').padStart(2, '0');
     const yearKey = year;
     const monthKey = `${year}-${month}`;
 

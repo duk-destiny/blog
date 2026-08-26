@@ -42,11 +42,12 @@ export default function Archive() {
                   <h2 className="text-2xl font-bold mb-4">{year}</h2>
                   <div className="space-y-4 ml-4 border-l-2 border-gray-200 dark:border-gray-700 pl-6">
                     {Object.entries(months).map(([monthKey, articles], monthIndex) => {
-                      const [, month] = monthKey.split('-');
+                      const month = monthKey.split('-')[1]?.padStart(2, '0');
+                      const monthLabel = (month && monthNames[month as keyof typeof monthNames]?.[language]) ?? month;
                       return (
                         <div key={monthKey} className="animate-fade-up" style={{ animationDelay: `${(yearIndex * 0.1) + (monthIndex * 0.05)}s` }}>
                           <h3 className="text-lg font-semibold mb-2">
-                            {monthNames[month as keyof typeof monthNames][language]}
+                            {monthLabel}
                             <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
                               ({articles.length} {t('contentCount')})
                             </span>

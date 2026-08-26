@@ -1,16 +1,17 @@
 {
   "v1": {
     "zh": {
-      "label": "第一版 · 2026 开源实战版（2026.07）",
+      "label": "开源实战版 · 2026.07",
       "displayName": "issssa · 和弦",
       "role": "大模型应用工程师 · AI 工程方向",
-      "bio": "专注大模型应用工程化，擅长检索增强生成（RAG）、Agent / Tool 工作流编排与本地模型部署；具备医疗合规 RAG 系统的端到端交付经验，注重工程可靠性与技术沉淀。",
+      "bio": "专注大模型应用的工程化落地，覆盖「视觉感知 + LLM 研判 + RAG 检索 + 闭环处置」的完整链路：擅长 Agent / 多 Agent 工作流编排、混合检索 RAG、知识图谱推理与本地模型部署（AMD ROCm / ONNX / llama.cpp）。持续以开源项目实践 AI 工程，重视回答的可信、可溯、可审计。",
       "email": "2775089477@qq.com",
       "github": "github.com/duk-destiny",
+      "csdn": "blog.csdn.net/2401_87653039",
       "skills": [
         {
           "title": "编程语言",
-          "items": "Python、C++"
+          "items": "Python、C++、TypeScript"
         },
         {
           "title": "大模型框架",
@@ -22,7 +23,15 @@
         },
         {
           "title": "检索增强 RAG",
-          "items": "混合检索、知识图谱多跳推理、反思闭环、全流程可溯源"
+          "items": "混合检索（向量+BM25）、知识图谱多跳推理、反思闭环、全流程可溯源"
+        },
+        {
+          "title": "视觉 AI 与部署",
+          "items": "YOLOv8-ONNX 自训练、目标检测与跟踪、OpenCV、ONNX Runtime"
+        },
+        {
+          "title": "本地化部署",
+          "items": "AMD ROCm、Ollama、llama.cpp、离线推理"
         },
         {
           "title": "工具链",
@@ -33,53 +42,100 @@
           "items": "Codex、WorkBuddy、CC"
         },
         {
+          "title": "前端工程",
+          "items": "React、Vue、Tailwind CSS、Vite"
+        },
+        {
           "title": "算法与训练",
           "items": "深度学习（CNN / RNN / Transformer）、云环境训练"
         }
       ],
       "projects": [
         {
-          "name": "医疗合规 RAG 系统",
-          "stack": "Python · LangChain · LangGraph · FastAPI · LangServe · 向量数据库",
-          "time": "进行中（准备部署至 Render）",
+          "name": "智能施工工地守护者",
+          "stack": "Python · LangGraph · AutoGen · YOLOv8-ONNX · RAG · FastAPI",
+          "time": "2026.07 — 持续迭代",
           "points": [
-            "面向医疗场景的检索增强生成系统，在传统 RAG 上叠加多层增强机制，确保回答可信、可溯、可审计。",
-            "合规护栏双层过滤、LangGraph 自我反思重检闭环，降低幻觉率、提升事实准确性。",
-            "医学知识图谱多跳推理突破单跳检索局限；分层长期记忆支持个性化连续咨询。",
-            "每次回答附带完整引用链路与审计日志，满足医疗场景对可解释性与合规审计的刚性需求。"
-          ]
+            "构建「视觉感知 → 规范检索 → 风险定级 → 闭环处置 → 人工纠偏 → 复训回写」端到端施工安全智能体，多 Agent 协同研判、证据链可追溯。",
+            "自训练 YOLOv8 模型转 ONNX 部署，实时链路首帧出警、规则驱动、无阻塞推理，兼顾告警时效与研判深度。",
+            "以 RAG 检索安全规范条款作为 Agent 决策依据，风险告警附带条款引用与图像证据，全流程可复盘。",
+            "设计样本回流与复训闭环，将人工纠偏结果回写数据集，持续提升模型检出能力。"
+          ],
+          "link": "https://github.com/duk-destiny/Smart-Construction-Site-Guardian"
+        },
+        {
+          "name": "办公助理 ProjectPack（AMD Radeon 黑客松 · Team PLASMA）",
+          "stack": "Python · AMD ROCm · llama.cpp · FAISS · BM25 · RRF · FastAPI",
+          "time": "2026.07（AMD Radeon Hackathon · Track 2）",
+          "points": [
+            "在 AMD 平台完成 Llama 3.1 8B Instruct 的 ROCm 适配与本地部署，推理全程本地化，保障数据私密。",
+            "实现 FAISS + BM25 混合检索与 RRF 融合排序，从项目参考文件与任务列表中检索项目范围证据、评估任务进度。",
+            "结合规则引擎与本地适配模型生成可审计的报告捆绑包，支持任务进度评估与范围证据检索。"
+          ],
+          "link": "https://github.com/duk-destiny/Radeon-hackathon-2026-07"
+        },
+        {
+          "name": "RAG 医疗助手",
+          "stack": "Python · LangGraph · LangChain · FAISS · BM25 · 知识图谱",
+          "time": "2026.07",
+          "points": [
+            "基于 LangGraph 构建治理型医疗问答智能体：混合检索（向量 + BM25）+ 知识图谱多跳推理，突破单跳检索局限。",
+            "三层记忆体系（短期上下文 / 向量事件记忆 / 结构化画像）支持个性化连续咨询。",
+            "角色隔离的健康档案访问控制 + 合规护栏，回答可溯源、可审计；基于 RAGAS 评测迭代优化。"
+          ],
+          "link": "https://github.com/duk-destiny/RAG-Medical-Assistant"
+        },
+        {
+          "name": "个人博客网站",
+          "stack": "React · TypeScript · Tailwind CSS · Vite · i18n",
+          "time": "2026.04 — 持续迭代",
+          "points": [
+            "从零搭建个人博客：中英双语、暗色模式、Markdown 渲染、GitHub 贡献图、多版本在线简历。",
+            "以「脚本 + 数据驱动」的内容管线沉淀博客 / 项目 / 简历的自动化工作流，降低日常维护成本。"
+          ],
+          "link": "https://github.com/duk-destiny/blog"
         }
       ],
       "evaluations": [
-        "具备大模型应用从原型到产品交付的端到端能力，重视可靠性、可解释性与可审计性。",
-        "熟悉 LangChain / LangGraph 生态与 RAG 工程化，能独立设计含合规护栏与反思闭环的复杂系统。",
-        "注重代码质量与文档沉淀，习惯将工程经验整理复用。",
+        "具备大模型应用从原型到交付的端到端能力，能独立完成「视觉感知 + LLM 研判 + 闭环处置」的多模态系统。",
+        "深耕 RAG 工程化：混合检索、知识图谱推理、反思闭环、全流程可溯源，追求回答的可信与可审计。",
+        "熟悉本地化部署链路（AMD ROCm / ONNX / llama.cpp），重视数据隐私与离线可用性。",
+        "注重代码质量与文档沉淀，习惯将工程经验沉淀为可复用资产（博客 / 笔记 / Skills）。",
         "以产品交付标准要求产出，善于借助 AI 辅助开发工具显著提升工程效率。"
       ]
     },
     "en": {
-      "label": "v1 · 2026 Open Source Edition (2026.07)",
+      "label": "Open Source Practice Edition · 2026.07",
       "displayName": "issssa",
       "role": "LLM Application Engineer · AI Engineering",
-      "bio": "Focused on engineering LLM applications, specializing in RAG, Agent/Tool workflow orchestration, and local model deployment. Experienced in end-to-end delivery of medical compliance RAG systems, with a strong focus on engineering reliability and knowledge accumulation.",
+      "bio": "Focused on engineering real-world LLM applications across the full pipeline of \"visual perception + LLM reasoning + RAG retrieval + closed-loop handling\": skilled in Agent / multi-agent workflow orchestration, hybrid retrieval RAG, knowledge graph reasoning, and local model deployment (AMD ROCm / ONNX / llama.cpp). Continuously practicing AI engineering through open source projects, with a strong emphasis on trustworthy, traceable, and auditable answers.",
       "email": "2775089477@qq.com",
       "github": "github.com/duk-destiny",
+      "csdn": "blog.csdn.net/2401_87653039",
       "skills": [
         {
           "title": "Programming Languages",
-          "items": "Python、C++"
+          "items": "Python, C++, TypeScript"
         },
         {
           "title": "LLM Frameworks",
-          "items": "LangChain、LangGraph、AutoGen"
+          "items": "LangChain, LangGraph, AutoGen"
         },
         {
           "title": "Model Service & API",
-          "items": "FastAPI、LangServe、Gradio"
+          "items": "FastAPI, LangServe, Gradio"
         },
         {
           "title": "Retrieval-Augmented RAG",
-          "items": "Hybrid Search, Knowledge Graph Multi-hop Reasoning, Reflection Loop, Full Traceability"
+          "items": "Hybrid Search (Vector + BM25), Knowledge Graph Multi-hop Reasoning, Reflection Loop, Full Traceability"
+        },
+        {
+          "title": "Vision AI & Deployment",
+          "items": "Self-trained YOLOv8-ONNX, Object Detection & Tracking, OpenCV, ONNX Runtime"
+        },
+        {
+          "title": "Local Deployment",
+          "items": "AMD ROCm, Ollama, llama.cpp, Offline Inference"
         },
         {
           "title": "Toolchain",
@@ -87,7 +143,11 @@
         },
         {
           "title": "AI-Assisted Development",
-          "items": "Codex、WorkBuddy、CC"
+          "items": "Codex, WorkBuddy, CC"
+        },
+        {
+          "title": "Frontend Engineering",
+          "items": "React, Vue, Tailwind CSS, Vite"
         },
         {
           "title": "Algorithms & Training",
@@ -96,21 +156,55 @@
       ],
       "projects": [
         {
-          "name": "Medical Compliance RAG System",
-          "stack": "Python · LangChain · LangGraph · FastAPI · LangServe · Vector Database",
-          "time": "In Progress (Preparing to deploy to Render)",
+          "name": "Smart Construction Site Guardian",
+          "stack": "Python · LangGraph · AutoGen · YOLOv8-ONNX · RAG · FastAPI",
+          "time": "2026.07 — Continuously Iterating",
           "points": [
-            "A Retrieval-Augmented Generation system for medical scenarios, layering multiple enhancement mechanisms on top of traditional RAG to ensure trustworthy, traceable, and auditable answers.",
-            "Dual-layer compliance guardrail filtering and LangGraph self-reflection re-check loop, reducing hallucination rates and improving factual accuracy.",
-            "Medical knowledge graph multi-hop reasoning overcoming single-hop retrieval limitations; layered long-term memory enabling personalized continuous consultations.",
-            "Every response includes a complete citation chain and audit log, meeting the rigid requirements for explainability and compliance auditing in medical scenarios."
-          ]
+            "Built an end-to-end construction safety intelligent system: visual perception → standard retrieval → risk grading → closed-loop handling → manual correction → retraining feedback, with multi-agent collaborative reasoning and traceable evidence chains.",
+            "Self-trained YOLOv8 model deployed via ONNX, enabling first-frame alerting on the real-time pipeline with rule-driven, non-blocking inference, balancing alert timeliness and reasoning depth.",
+            "RAG retrieval of safety standard clauses serves as the Agent's decision basis; alerts carry clause citations and image evidence, fully reviewable.",
+            "Designed a sample feedback and retraining loop that writes manual corrections back into the dataset, continuously improving detection capability."
+          ],
+          "link": "https://github.com/duk-destiny/Smart-Construction-Site-Guardian"
+        },
+        {
+          "name": "Office Agent ProjectPack (AMD Radeon Hackathon · Team PLASMA)",
+          "stack": "Python · AMD ROCm · llama.cpp · FAISS · BM25 · RRF · FastAPI",
+          "time": "2026.07 (AMD Radeon Hackathon · Track 2)",
+          "points": [
+            "Adapted and deployed Llama 3.1 8B Instruct on AMD ROCm for fully local inference, ensuring data privacy.",
+            "Implemented FAISS + BM25 hybrid retrieval with RRF fusion ranking to retrieve project scope evidence and assess task progress from reference files and task lists.",
+            "Combined a rule engine with locally adapted models to generate auditable report bundles supporting task progress evaluation and scope evidence retrieval."
+          ],
+          "link": "https://github.com/duk-destiny/Radeon-hackathon-2026-07"
+        },
+        {
+          "name": "RAG Medical Assistant",
+          "stack": "Python · LangGraph · LangChain · FAISS · BM25 · Knowledge Graph",
+          "time": "2026.07",
+          "points": [
+            "Built a governance-oriented medical Q&A agent on LangGraph: hybrid retrieval (Vector + BM25) plus knowledge graph multi-hop reasoning, going beyond single-hop retrieval limits.",
+            "A three-tier memory system (short-term context / vector event memory / structured profile) supports personalized continuous consultations.",
+            "Role-isolated access control for health records plus compliance guardrails ensure traceable, auditable answers; iteratively optimized with RAGAS evaluation."
+          ],
+          "link": "https://github.com/duk-destiny/RAG-Medical-Assistant"
+        },
+        {
+          "name": "Personal Blog Website",
+          "stack": "React · TypeScript · Tailwind CSS · Vite · i18n",
+          "time": "2026.04 — Continuously Iterating",
+          "points": [
+            "Built a personal blog from scratch: bilingual (zh/en), dark mode, Markdown rendering, GitHub contribution graph, and multi-version online resume.",
+            "Created a script + data-driven content pipeline for blogs / projects / resumes, lowering routine maintenance costs."
+          ],
+          "link": "https://github.com/duk-destiny/blog"
         }
       ],
       "evaluations": [
-        "End-to-end capability in delivering LLM applications from prototype to production, prioritizing reliability, explainability, and auditability.",
-        "Proficient in the LangChain/LangGraph ecosystem and RAG engineering, capable of independently designing complex systems with compliance guardrails and self-reflection loops.",
-        "Emphasizes code quality and documentation, accustomed to organizing and reusing engineering experience.",
+        "End-to-end capability in delivering LLM applications from prototype to production, able to independently build multimodal systems spanning visual perception, LLM reasoning, and closed-loop handling.",
+        "Deep expertise in RAG engineering: hybrid retrieval, knowledge graph reasoning, reflection loops, and full traceability, pursuing trustworthy and auditable answers.",
+        "Familiar with local deployment pipelines (AMD ROCm / ONNX / llama.cpp), valuing data privacy and offline usability.",
+        "Emphasizes code quality and documentation, habitually distilling engineering experience into reusable assets (blogs / notes / skills).",
         "Holds output to product delivery standards, skilled at leveraging AI-assisted development tools to significantly improve engineering efficiency."
       ]
     }
