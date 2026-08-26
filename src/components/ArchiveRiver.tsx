@@ -78,35 +78,47 @@ export default function ArchiveRiver({ articles, language }: ArchiveRiverProps) 
       vel: 0,
       moved: false,
     };
-    e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const s = dragState.current;
-    if (!s.active) return;
-    const dx = e.clientX - s.lastX;
-    if (Math.abs(e.clientX - s.startX) > 6) s.moved = true;
-    s.lastX = e.clientX;
-    const now = performance.now();
-    const dt = Math.max(now - s.lastTime, 1);
-    s.lastTime = now;
-    s.vel = (dx / dt) * 16.7; // 归一化到 60fps 每帧位移
-    if (scrollerRef.current) scrollerRef.current.scrollLeft -= dx;
-  };
+  // 窗口级监听 pointermove/pointerup，不占用 pointer capture。
+  // 若使用 setPointerCapture，click 事件会被重定向到容器而非卡片 <a>，导致卡片无法点击。
+  useEffect(() => {
+    const onPointerMove = (e: PointerEvent) => {
+      const s = dragState.current;
+      if (!s.active) return;
+      const dx = e.clientX - s.lastX;
+      if (Math.abs(e.clientX - s.startX) > 6) s.moved = true;
+      s.lastX = e.clientX;
+      const now = performance.now();
+      const dt = Math.max(now - s.lastTime, 1);
+      s.lastTime = now;
+      s.vel = (dx / dt) * 16.7; // 归一化到 60fps 每帧位移
+      if (scrollerRef.current) scrollerRef.current.scrollLeft -= dx;
+    };
 
-  const endDrag = () => {
-    const s = dragState.current;
-    s.active = false;
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    const animate = () => {
-      if (Math.abs(s.vel) < 0.5) return;
-      scroller.scrollLeft -= s.vel;
-      s.vel *= 0.94;
+    const onPointerEnd = () => {
+      const s = dragState.current;
+      s.active = false;
+      const scroller = scrollerRef.current;
+      if (!scroller) return;
+      const animate = () => {
+        if (Math.abs(s.vel) < 0.5) return;
+        scroller.scrollLeft -= s.vel;
+        s.vel *= 0.94;
+        rafRef.current = requestAnimationFrame(animate);
+      };
       rafRef.current = requestAnimationFrame(animate);
     };
-    rafRef.current = requestAnimationFrame(animate);
-  };
+
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerEnd);
+    window.addEventListener('pointercancel', onPointerEnd);
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerEnd);
+      window.removeEventListener('pointercancel', onPointerEnd);
+    };
+  }, []);
 
   // 拖拽结束后抑制误触发的卡片点击跳转
   const handleClickCapture = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -121,9 +133,6 @@ export default function ArchiveRiver({ articles, language }: ArchiveRiverProps) 
     <div
       ref={scrollerRef}
       onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={endDrag}
-      onPointerCancel={endDrag}
       onClickCapture={handleClickCapture}
       data-testid="archive-river-scroller"
       className="archive-river-scroller overflow-x-auto overflow-y-hidden select-none cursor-grab active:cursor-grabbing touch-pan-y [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
