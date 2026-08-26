@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useLanguage } from '@/hooks/useLanguage';
 import Layout from '@/components/Layout';
 import { siteConfig } from '@/config/siteConfig';
 import type { TranslationKeys } from '@/i18n-resources';
-import { ArrowUpRight, Github, Mail, BookOpen } from 'lucide-react';
+import { Github, Mail, BookOpen } from 'lucide-react';
 
 type SkillItem = string | { key: TranslationKeys };
 type SkillGroup = { titleKey: TranslationKeys; items: SkillItem[] };
@@ -56,12 +55,11 @@ const interests: TranslationKeys[] = [
 ];
 
 export default function About() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: journeyRef, isVisible: journeyVisible } = useScrollAnimation();
   const { ref: interestsRef, isVisible: interestsVisible } = useScrollAnimation();
   const { ref: abilityRef, isVisible: abilityVisible } = useScrollAnimation();
-  const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
 
   const sectionTitle = (text: string) => (
     <h2 className="font-serif text-2xl font-bold mb-5 text-gray-900 dark:text-gray-100 flex items-center gap-2">
@@ -196,24 +194,6 @@ export default function About() {
                   </div>
                 ))}
               </div>
-            </section>
-
-            <section
-              ref={contactRef as React.RefObject<HTMLElement>}
-              className={`${contactVisible ? 'animate-fade-up' : 'opacity-0'}`}
-            >
-              <div className="mt-6 text-center">
-                <Link
-                  to="/resume"
-                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
-                >
-                  {t('aboutGoToResume')}
-                  <ArrowUpRight size={16} />
-                </Link>
-              </div>
-              <p className="mt-8 text-center text-gray-500 dark:text-gray-400 italic">
-                {language === 'zh' ? siteConfig.user.motto.zh : siteConfig.user.motto.en}
-              </p>
             </section>
           </div>
         </div>
