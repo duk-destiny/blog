@@ -99,7 +99,7 @@ export const projectItems: ContentItem[] = [
       "zh": "在AMD芯片上开发的一个私密的、以证据为基础的办公助理。它可以导入项目参考文件和任务列表，检索项目范围证据，评估任务进度，并结合规则和本地适配完成的模型， 并生成可审计的报告捆绑包。",
       "en": "A private, evidence‑based office assistant developed on AMD chips. It can import project reference files and task lists, retrieve evidence for project scopes, assess task progress, leverage rules and locally adapted completed models, and generate auditable report bundles."
     },
-    "date": "2026-8-1",
+    "date": "2026-08-01",
     "category": "practicalProjects",
     "readTime": 10,
     "tags": {

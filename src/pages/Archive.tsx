@@ -1,7 +1,11 @@
+import { useMemo, useState } from 'react';
+import { List, Waves } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Layout from '@/components/Layout';
-import { getArticlesByArchive } from '@/services/articleService';
+import ArchiveRiver from '@/components/ArchiveRiver';
+import { getArticlesByArchive, getItemPrimaryLink } from '@/services/articleService';
+import type { ContentItem } from '@/components/ArticleList';
 
 // 月份名称映射
 const monthNames = {
@@ -23,6 +27,16 @@ export default function Archive() {
   const { t, language } = useLanguage();
   const { ref, isVisible } = useScrollAnimation();
   const archive = getArticlesByArchive();
+  const [view, setView] = useState<'list' | 'river'>('list');
+
+  // 扁平化并按日期倒序（最新在前），供时间河流使用
+  const articles = useMemo(() => {
+    const flat: ContentItem[] = [];
+    Object.values(archive).forEach((months) =>
+      Object.values(months).forEach((items) => flat.push(...items))
+    );
+    return flat.sort((a, b) => b.date.localeCompare(a.date));
+  }, [archive]);
 
   return (
     <Layout>
@@ -36,17 +50,54 @@ export default function Archive() {
               {t('archive')}
             </h1>
 
+            {/* 列表 / 时间河流 切换 */}
+            <div className="flex justify-center mb-10">
+              <div className="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-dark-card p-1 shadow-sm">
+                <button
+                  onClick={() => setView('list')}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    view === 'list'
+                      ? 'bg-primary text-white shadow'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-primary'
+                  }`}
+                >
+                  <List size={15} />
+                  {t('archiveList')}
+                </button>
+                <button
+                  onClick={() => setView('river')}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    view === 'river'
+                      ? 'bg-primary text-white shadow'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-primary'
+                  }`}
+                >
+                  <Waves size={15} />
+                  {t('archiveRiver')}
+                </button>
+              </div>
+            </div>
+
+            {view === 'river' ? (
+              <div className="animate-fade-up">
+                <ArchiveRiver articles={articles} language={language} />
+                <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                  {t('archiveRiverHint')}
+                </p>
+              </div>
+            ) : (
             <div className="space-y-8 animate-fade-up">
               {Object.entries(archive).map(([year, months], yearIndex) => (
                 <div key={year} className="animate-fade-up" style={{ animationDelay: `${yearIndex * 0.1}s` }}>
                   <h2 className="text-2xl font-bold mb-4">{year}</h2>
                   <div className="space-y-4 ml-4 border-l-2 border-gray-200 dark:border-gray-700 pl-6">
                     {Object.entries(months).map(([monthKey, articles], monthIndex) => {
-                      const [, month] = monthKey.split('-');
+                      const month = monthKey.split('-')[1]?.padStart(2, '0');
+                      const monthLabel = (month && monthNames[month as keyof typeof monthNames]?.[language]) ?? month;
                       return (
                         <div key={monthKey} className="animate-fade-up" style={{ animationDelay: `${(yearIndex * 0.1) + (monthIndex * 0.05)}s` }}>
                           <h3 className="text-lg font-semibold mb-2">
-                            {monthNames[month as keyof typeof monthNames][language]}
+                            {monthLabel}
                             <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
                               ({articles.length} {t('contentCount')})
                             </span>
@@ -57,7 +108,9 @@ export default function Archive() {
                                 <div className="flex flex-col">
                                   <div className="flex items-center gap-2">
                                     <a
-                                      href={article.path}
+                                      href={getItemPrimaryLink(article)}
+                                      target={getItemPrimaryLink(article).startsWith('http') ? '_blank' : undefined}
+                                      rel={getItemPrimaryLink(article).startsWith('http') ? 'noopener noreferrer' : undefined}
                                       className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors flex-1"
                                     >
                                       {article.title[language]}
@@ -85,6 +138,7 @@ export default function Archive() {
                 </div>
               ))}
             </div>
+            )}
           </div>
         </div>
       </div>

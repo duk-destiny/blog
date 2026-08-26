@@ -7,8 +7,9 @@ export type ResumeContent = {
   bio: string;
   email: string;
   github: string;
+  csdn: string;
   skills: { title: string; items: string }[];
-  projects: { name: string; stack: string; time: string; points: string[] }[];
+  projects: { name: string; stack: string; time: string; points: string[]; link?: string }[];
   evaluations: string[];
 };
 

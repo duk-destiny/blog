@@ -17,6 +17,7 @@ export default function Hero() {
   const socials = [
     { href: siteConfig.socialLinks.github, label: 'GitHub', icon: Github },
     { href: siteConfig.socialLinks.email, label: 'Email', icon: Mail },
+    { href: siteConfig.socialLinks.csdn, label: 'CSDN', icon: BookOpen },
     ...(siteConfig.socialLinks.resume
       ? [{ href: siteConfig.socialLinks.resume, label: t('viewResume'), icon: FileText }]
       : []),
