@@ -4,7 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Layout from '@/components/Layout';
 import ArchiveRiver from '@/components/ArchiveRiver';
-import { getArticlesByArchive } from '@/services/articleService';
+import { getArticlesByArchive, getItemPrimaryLink } from '@/services/articleService';
 import type { ContentItem } from '@/components/ArticleList';
 
 // 月份名称映射
@@ -108,7 +108,9 @@ export default function Archive() {
                                 <div className="flex flex-col">
                                   <div className="flex items-center gap-2">
                                     <a
-                                      href={article.path}
+                                      href={getItemPrimaryLink(article)}
+                                      target={getItemPrimaryLink(article).startsWith('http') ? '_blank' : undefined}
+                                      rel={getItemPrimaryLink(article).startsWith('http') ? 'noopener noreferrer' : undefined}
                                       className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors flex-1"
                                     >
                                       {article.title[language]}

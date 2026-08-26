@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ContentItem } from '@/components/ArticleList';
+import { getItemPrimaryLink } from '@/services/articleService';
 
 const STEP = 320;        // 相邻节点水平间距
 const CARD_W = 264;      // 卡片宽度
@@ -194,7 +195,9 @@ export default function ArchiveRiver({ articles, language }: ArchiveRiverProps) 
               }}
             >
               <a
-                href={n.item.path}
+                href={getItemPrimaryLink(n.item)}
+                target={getItemPrimaryLink(n.item).startsWith('http') ? '_blank' : undefined}
+                rel={getItemPrimaryLink(n.item).startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="group block w-full h-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-dark-card shadow-sm hover:shadow-lg hover:border-primary/60 dark:hover:border-primary/60 transition-all"
               >
                 <div className="text-xs font-medium text-primary mb-1.5">{n.item.date}</div>

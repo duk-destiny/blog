@@ -29,13 +29,24 @@ export function getArticlesByArchive() {
       acc[year] = Object.entries(months)
         .sort(([monthA], [monthB]) => monthB.localeCompare(monthA))
         .reduce((monthAcc, [month, items]) => {
-          monthAcc[month] = items;
+          // 同一月份内按日期降序（最新在前）
+          monthAcc[month] = [...items].sort((a, b) => b.date.localeCompare(a.date));
           return monthAcc;
         }, {} as { [key: string]: ContentItem[] });
       return acc;
     }, {} as { [key: string]: { [key: string]: ContentItem[] } });
 
   return sortedArchive;
+}
+
+// 内容主跳转链接：有部署链接用部署链接，否则用仓库链接，都没有则用 path（如博客内部页）
+export function getItemPrimaryLink(item: ContentItem): string {
+  const candidates = [item.path, item.path2].filter(Boolean) as string[];
+  const deploy = candidates.find((u) => u.startsWith('http') && !u.includes('github.com'));
+  if (deploy) return deploy;
+  const repo = candidates.find((u) => u.startsWith('http') && u.includes('github.com'));
+  if (repo) return repo;
+  return item.path;
 }
 
 // 获取所有分类
