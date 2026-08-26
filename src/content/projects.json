@@ -142,5 +142,37 @@
         "Offline Deployment"
       ]
     }
+  },
+  {
+    "id": 6,
+    "type": "project",
+    "path": "https://github.com/duk-destiny/RAG-Medical-Assistant",
+    "title": {
+      "zh": "RAG 医疗助手",
+      "en": "RAG Medical Assistant"
+    },
+    "summary": {
+      "zh": "基于 LangGraph 的治理型医疗问答智能体：混合检索（向量 + BM25）、知识图谱多跳推理、 三层记忆体系（短期上下文 / 向量事件记忆 / 结构化画像）、角色隔离的健康档案访问控制。",
+      "en": "Governance‑oriented Medical Question‑answering Agent Based on LangGraph: Hybrid Retrieval (Vector + BM25), Multi‑hop Reasoning on Knowledge Graphs, Three‑tier Memory System (Short‑term Context / Vector‑based Event Memory / Structured Profile), Role‑isolated Access Control for Health Records."
+    },
+    "date": "2026-07-15",
+    "category": "practicalProjects",
+    "readTime": 10,
+    "tags": {
+      "zh": [
+        "RAG",
+        "知识图谱",
+        "AI 应用",
+        "多层记忆",
+        "Prompt 自优化"
+      ],
+      "en": [
+        "RAG",
+        "Knowledge Graph",
+        "AI Applications",
+        "Multi‑layer Memory",
+        "Prompt Self‑optimization"
+      ]
+    }
   }
 ]
