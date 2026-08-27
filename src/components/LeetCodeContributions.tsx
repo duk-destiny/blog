@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { siteConfig } from '@/config/siteConfig';
 import { useLanguage } from '@/hooks/useLanguage';
+import leetcodeData from '@/data/leetcode-calendar.json';
 
 interface SubmissionDay {
   date: string;
@@ -16,50 +17,36 @@ function toLevel(count: number): number {
   return 4;
 }
 
+// 静态数据：由 scripts/fetch-leetcode/fetch-leetcode.mjs 在本地抓取生成，
+// 避免线上（Vercel 等）请求 leetcode.cn 被 Cloudflare 拦截导致无法渲染。
+// 刷了新题后运行 `npm run leetcode:update` 并提交即可更新。
+const calendar = (leetcodeData as { calendar: Record<string, number> }).calendar ?? {};
+const entries = Object.entries(calendar);
+
+const initialDays: SubmissionDay[] = entries.map(([ts, count]) => {
+  const date = new Date(Number(ts) * 1000);
+  return {
+    date: date.toISOString().split('T')[0],
+    count: Number(count) || 0,
+  };
+});
+
+const now = Math.floor(Date.now() / 1000);
+const weekAgo = now - 7 * 24 * 3600;
+const initialStats = {
+  totalSub: entries.reduce((s, [, c]) => s + (Number(c) || 0), 0),
+  activeDays: entries.length,
+  last7Sub: entries
+    .filter(([ts]) => Number(ts) >= weekAgo)
+    .reduce((s, [, c]) => s + (Number(c) || 0), 0),
+};
+
 export default function LeetCodeContributions() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [submissions, setSubmissions] = useState<SubmissionDay[]>([]);
-  const [stats, setStats] = useState<{
-    totalSub: number;
-    activeDays: number;
-    last7Sub: number;
-  } | null>(null);
+  const [submissions] = useState<SubmissionDay[]>(initialDays);
+  const [stats] = useState(initialStats);
   const username = siteConfig.socialLinks.leetcode;
   const { t } = useLanguage();
-
-  useEffect(() => {
-    if (!username) return;
-
-    // 本地开发走 vite proxy，线上走 vercel.json rewrite（均为同源，避免 CORS）
-    fetch('/api/leetcode-submissions')
-      .then(res => res.json())
-      .then(text => {
-        // leetcode.cn 返回的是 JSON 字符串（双重编码），做一次兜底解析
-        const cal = typeof text === 'string' ? JSON.parse(text) : text;
-        if (!cal || typeof cal !== 'object') return;
-        const entries = Object.entries(cal) as [string, number][];
-
-        const days: SubmissionDay[] = entries.map(([ts, count]) => {
-          const date = new Date(Number(ts) * 1000);
-          return {
-            date: date.toISOString().split('T')[0],
-            count: Number(count) || 0,
-          };
-        });
-        setSubmissions(days);
-
-        const now = Math.floor(Date.now() / 1000);
-        const weekAgo = now - 7 * 24 * 3600;
-        setStats({
-          totalSub: entries.reduce((s, [, c]) => s + (Number(c) || 0), 0),
-          activeDays: entries.length,
-          last7Sub: entries
-            .filter(([ts]) => Number(ts) >= weekAgo)
-            .reduce((s, [, c]) => s + (Number(c) || 0), 0),
-        });
-      })
-      .catch(err => console.error('Failed to fetch LeetCode data:', err));
-  }, [username]);
 
   useEffect(() => {
     if (!canvasRef.current || submissions.length === 0) return;
