@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/api/leetcode-submissions",
-      "destination": "https://leetcode.cn/api/user_submission_calendar/yin-tian-51/"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -14,7 +14,8 @@
     "i18n:sync": "npm run i18n:scan && npm run i18n:types",
     "resume:new": "node scripts/resume-version/new-resume-version.mjs",
     "blog:add": "node scripts/add-blog/add-blog.mjs",
-    "project:add": "node scripts/add-project/add-project.mjs"
+    "project:add": "node scripts/add-project/add-project.mjs",
+    "leetcode:update": "node scripts/fetch-leetcode/fetch-leetcode.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
