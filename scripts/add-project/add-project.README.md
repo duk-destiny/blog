@@ -10,7 +10,7 @@
 npm run project:add
 
 # 方式二：直接运行
-node scripts/add-project.mjs
+node scripts/add-project/add-project.mjs
 ```
 
 运行后会逐项提示输入（直接回车使用方括号中的默认值）：
@@ -27,8 +27,9 @@ node scripts/add-project.mjs
 阅读分钟数 (10):
 中文标签 (逗号分隔) (项目):
 英文标签 (逗号分隔) (Project):
-主链接 (https://...):
-次链接/仓库 (https://...):
+是否已有部署链接？（y/n） (n):
+GitHub 仓库链接 (https://...):      # 选择 n 时只问仓库链接
+# 选择 y 时会依次问：部署链接 (https://...) 和 GitHub 仓库链接 (https://...)
 ```
 
 ## 字段说明

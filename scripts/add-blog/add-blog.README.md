@@ -14,7 +14,7 @@
 npm run blog:add
 
 # 方式二：直接运行
-node scripts/add-blog.mjs
+node scripts/add-blog/add-blog.mjs
 ```
 
 ## Markdown 文件格式

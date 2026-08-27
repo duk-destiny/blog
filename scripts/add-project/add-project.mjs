@@ -7,7 +7,7 @@
  *   - src/content/projects.ts     （由本脚本重新生成，供应用引入）
  *
  * 用法：
- *   node scripts/add-project.mjs
+ *   node scripts/add-project/add-project.mjs
  *   npm run project:add
  *
  * 提示：
