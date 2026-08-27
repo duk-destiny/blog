@@ -5,7 +5,7 @@
  * 解析 blogs/ 目录下的 Markdown 文件，自动生成 src/content/blogs.ts
  *
  * 用法：
- *   node scripts/add-blog.mjs
+ *   node scripts/add-blog/add-blog.mjs
  *   npm run blog:add
  *
  * 每个 .md 文件需包含 YAML frontmatter：
