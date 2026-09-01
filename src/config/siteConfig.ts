@@ -15,8 +15,8 @@ export const siteConfig = {
     enName: 'issssa',
     // 身份标签（首屏胶囊）
     roles: {
-      zh: ['前端开发者', '终身学习者', '开源爱好者'],
-      en: ['Frontend Developer', 'Lifelong Learner', 'Open Source Enthusiast']
+      zh: ['大模型应用工程师', 'Agent工程', '终身学习者','开源爱好者'],
+      en: ['LLM Application Engineer', 'Agent / RAG Engineering', 'Lifelong Learner']
     },
     description1: {
       zh: '遇事不决，可问春风',
