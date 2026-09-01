@@ -9,8 +9,8 @@
       "en": "Personal Blog Website"
     },
     "summary": {
-      "zh": "基于react，tailwindcss的个人博客网站",
-      "en": "Personal blog website built with React, tailwindcss"
+      "zh": "中英双语、暗色模式的个人博客：React + TypeScript + Tailwind CSS + Vite，Markdown 渲染、GitHub 贡献图、LeetCode 刷题墙、多版本在线简历；以「脚本 + 数据驱动」的内容管线自动化维护博客 / 项目 / 简历。",
+      "en": "Bilingual (zh/en) personal blog with dark mode: React + TypeScript + Tailwind CSS + Vite, Markdown rendering, GitHub contribution graph, LeetCode heatmap and multi-version online resume — maintained through a script + data-driven content pipeline for posts, projects and resumes."
     },
     "date": "2026-04-25",
     "category": "practicalProjects",
@@ -39,7 +39,7 @@
     },
     "summary": {
       "zh": "算法/框架/工具等学习笔记记录",
-      "en": "Learning notes for algorithms, frameworks, tools, etc. records"
+      "en": "Curated learning notes on algorithms, frameworks and tooling."
     },
     "date": "2026-04-25",
     "category": "practicalProjects",
@@ -92,10 +92,10 @@
       "en": "Office Agent"
     },
     "summary": {
-      "zh": "在AMD芯片上开发的一个私密的、以证据为基础的办公助理。它可以导入项目参考文件和任务列表，检索项目范围证据，评估任务进度，并结合规则和本地适配完成的模型， 并生成可审计的报告捆绑包。",
-      "en": "A private, evidence‑based office assistant developed on AMD chips. It can import project reference files and task lists, retrieve evidence for project scopes, assess task progress, leverage rules and locally adapted completed models, and generate auditable report bundles."
+      "zh": "在 AMD 芯片上开发的私密、以证据为基础的办公助理：导入项目参考文件与任务列表，以 FAISS + BM25 混合检索（RRF 融合排序）定位项目范围证据、评估任务进度，结合规则引擎与本地适配模型生成可审计的报告捆绑包。Llama 3.1 8B Instruct 经 ROCm 本地部署，推理全程不出本机。",
+      "en": "A private, evidence-based office assistant on AMD chips: imports project reference files and task lists, locates scope evidence and assesses task progress via FAISS + BM25 hybrid retrieval with RRF fusion, and produces auditable report bundles by combining a rule engine with a locally adapted model. Llama 3.1 8B Instruct runs fully on-device via ROCm — inference never leaves the machine."
     },
-    "date": "2026-8-1",
+    "date": "2026-08-01",
     "category": "practicalProjects",
     "readTime": 10,
     "tags": {
@@ -120,26 +120,26 @@
       "en": "Smart Construction Site · Construction safety intelligent system"
     },
     "summary": {
-      "zh": "一套从「视觉感知 → 规范检索 → 风险定级 → 闭环处置 → 人工纠偏 → 复训回写」端到端打通的施工安全智能体，兼顾研判深度（多 Agent 协同、RAG 条款引用、证据链可追溯）与告警时效（实时链路首帧出警、规则驱动、无阻塞推理）",
-      "en": "A construction safety intelligent system integrates end-to-end processes from \"visual perception → standard retrieval → risk grading → closed-loop handling→ manual correction → retraining and rewriting,\" balancing deep judgment(multi-agent collaboration, RAG clause citation, evidence chain traceability) and alert timeliness (real-time first-frame alert alert, rule-driven, non-blocking reasoning)."
+      "zh": "面向施工安全的可控智能体：业务闭环（检出 → 派发 → 整改（本人 + 照片）→ 验收/驳回 → 逾期越级催办 → 全程审计），不止于「模型能检出」；自研 Plan-and-Execute 受限内核，LLM 仅在规划与汇总出场、步数 + 墙钟双闸强制收敛；Prompt 注入三重护栏（工具白名单、参数 schema 二次校验、权限作用域由代码注入）；YOLOv8-ONNX 无 GPU 端侧推理；判定与生成分离——风险等级查表，LLM 永不进定级。",
+      "en": "A controllable agent for construction safety: full business loop (detect → dispatch → rectify → verify/reject → escalate overdue → end-to-end audit); a self-built constrained Plan-and-Execute kernel where the LLM only plans and summarizes under step + wall-clock dual deadlines; three-layer prompt-injection guardrails (tool allowlist, arg-schema validation, code-injected permission scope); GPU-free edge vision via YOLOv8-ONNX; rule-table risk grading — the LLM never decides severity."
     },
     "date": "2026-07-28",
     "category": "practicalProjects",
     "readTime": 20,
     "tags": {
       "zh": [
-        "施工安全智能体",
-        "多 Agent 编排",
-        "RAG",
-        "自训练YOLOv8‑ONNX",
-        "离线部署"
+        "可控 Agent 编排",
+        "Prompt 注入防护",
+        "业务闭环",
+        "YOLOv8-ONNX 端侧",
+        "RAG"
       ],
       "en": [
-        "Construction Safety Agent",
-        "Multi‑Agent Orchestration",
-        "Retrieval‑Augmented Generation",
-        "Self‑trained YOLOv8‑ONNX",
-        "Offline Deployment"
+        "Controllable Agent",
+        "Prompt Injection Guard",
+        "Business Loop",
+        "YOLOv8-ONNX Edge",
+        "RAG"
       ]
     }
   },
@@ -152,8 +152,8 @@
       "en": "RAG Medical Assistant"
     },
     "summary": {
-      "zh": "基于 LangGraph 的治理型医疗问答智能体：混合检索（向量 + BM25）、知识图谱多跳推理、 三层记忆体系（短期上下文 / 向量事件记忆 / 结构化画像）、角色隔离的健康档案访问控制。",
-      "en": "Governance‑oriented Medical Question‑answering Agent Based on LangGraph: Hybrid Retrieval (Vector + BM25), Multi‑hop Reasoning on Knowledge Graphs, Three‑tier Memory System (Short‑term Context / Vector‑based Event Memory / Structured Profile), Role‑isolated Access Control for Health Records."
+      "zh": "基于 LangGraph 的治理型医疗问答智能体：混合检索（向量 + BM25 + RRF 融合）、知识图谱多跳推理、三层记忆体系（短期上下文 / 向量事件记忆 / 结构化画像）、角色隔离的健康档案访问控制、确定性反思闭环与答案级合规闸门。RAGAS 评测：context_recall / context_precision 均 1.00，faithfulness 0.95，answer_relevancy 0.92。",
+      "en": "Governance-oriented medical Q&A agent built on LangGraph: hybrid retrieval (vector + BM25 with RRF fusion), knowledge-graph multi-hop reasoning, a three-tier memory system (short-term context / vector event memory / structured profile), role-isolated access control for health records, deterministic reflection loops and an answer-level compliance gate. RAGAS: context_recall & context_precision 1.00, faithfulness 0.95, answer_relevancy 0.92."
     },
     "date": "2026-07-15",
     "category": "practicalProjects",

@@ -39,7 +39,7 @@
         },
         {
           "title": "AI 辅助开发",
-          "items": "Codex、WorkBuddy、CC"
+          "items": "Codex、Claude Code、WorkBuddy"
         },
         {
           "title": "前端工程",
@@ -53,13 +53,14 @@
       "projects": [
         {
           "name": "智能施工工地守护者",
-          "stack": "Python · LangGraph · AutoGen · YOLOv8-ONNX · RAG · FastAPI",
+          "stack": "Python · 自研 Plan-and-Execute 内核 · ONNX Runtime(YOLOv8) · BGE-small-zh + ChromaDB · OpenAI SDK + Ollama · FastAPI · React 18 + AntD",
           "time": "2026.07 — 持续迭代",
           "points": [
-            "构建「视觉感知 → 规范检索 → 风险定级 → 闭环处置 → 人工纠偏 → 复训回写」端到端施工安全智能体，多 Agent 协同研判、证据链可追溯。",
-            "自训练 YOLOv8 模型转 ONNX 部署，实时链路首帧出警、规则驱动、无阻塞推理，兼顾告警时效与研判深度。",
-            "以 RAG 检索安全规范条款作为 Agent 决策依据，风险告警附带条款引用与图像证据，全流程可复盘。",
-            "设计样本回流与复训闭环，将人工纠偏结果回写数据集，持续提升模型检出能力。"
+            "业务闭环：检出 → 派发 → 整改（责任人本人 + 现场照片）→ 验收/驳回 → 逾期催办自动越级 → 全程审计留痕，工单五类动作全落审计表，不止于「模型能检出」。",
+            "自研 Plan-and-Execute 受限内核（明确否决 ReAct）：LLM 仅在规划与汇总出场，步数 + 墙钟双闸强制收敛；计划解析失败截断不补全、绝不让 LLM 续写；步骤幂等，失败也留痕。",
+            "Prompt 注入三重护栏：工具白名单、参数 schema 二次校验、返回结构约束；权限作用域（user_id/role）由服务端代码注入，模型伪造越权身份在权限维度结构性失效；副作用工具强制人工确认，LLM 自报无需确认仍被拦截。",
+            "无 GPU 端侧视觉工程化：YOLOv8 自训练转 ONNX，ONNX Runtime CPU 推理 + INT8 量化；误报双规则（低置信烟雾 × 防护装备空间冲突、PPE 矛盾框）；10 类隐患白名单配置化，双场景切换不改代码。",
+            "可靠性与双闭环：四级降级链（云端 → 本地 Ollama → 规则模板 → 人工，degraded ≠ failed）+ 断路器；风险等级由 detect × compliance 矩阵查表，LLM 永不进定级；人工纠偏 → 训练样本 → 复训 → 评测 → 切换模型版本。"
           ],
           "link": "https://github.com/duk-destiny/Smart-Construction-Site-Guardian"
         },
@@ -81,7 +82,7 @@
           "points": [
             "基于 LangGraph 构建治理型医疗问答智能体：混合检索（向量 + BM25）+ 知识图谱多跳推理，突破单跳检索局限。",
             "三层记忆体系（短期上下文 / 向量事件记忆 / 结构化画像）支持个性化连续咨询。",
-            "角色隔离的健康档案访问控制 + 合规护栏，回答可溯源、可审计；基于 RAGAS 评测迭代优化。"
+            "角色隔离的健康档案访问控制 + 答案级合规闸门，回答可溯源、可审计；RAGAS 评测：context_recall / context_precision 均 1.00，faithfulness 0.95，answer_relevancy 0.92。"
           ],
           "link": "https://github.com/duk-destiny/RAG-Medical-Assistant"
         },
@@ -143,7 +144,7 @@
         },
         {
           "title": "AI-Assisted Development",
-          "items": "Codex, WorkBuddy, CC"
+          "items": "Codex, Claude Code, WorkBuddy"
         },
         {
           "title": "Frontend Engineering",
@@ -157,13 +158,14 @@
       "projects": [
         {
           "name": "Smart Construction Site Guardian",
-          "stack": "Python · LangGraph · AutoGen · YOLOv8-ONNX · RAG · FastAPI",
+          "stack": "Python · Self-built Plan-and-Execute Kernel · ONNX Runtime(YOLOv8) · BGE-small-zh + ChromaDB · OpenAI SDK + Ollama · FastAPI · React 18 + AntD",
           "time": "2026.07 — Continuously Iterating",
           "points": [
-            "Built an end-to-end construction safety intelligent system: visual perception → standard retrieval → risk grading → closed-loop handling → manual correction → retraining feedback, with multi-agent collaborative reasoning and traceable evidence chains.",
-            "Self-trained YOLOv8 model deployed via ONNX, enabling first-frame alerting on the real-time pipeline with rule-driven, non-blocking inference, balancing alert timeliness and reasoning depth.",
-            "RAG retrieval of safety standard clauses serves as the Agent's decision basis; alerts carry clause citations and image evidence, fully reviewable.",
-            "Designed a sample feedback and retraining loop that writes manual corrections back into the dataset, continuously improving detection capability."
+            "Business loop: detect → dispatch → rectify (assignee + on-site photo) → verify/reject → auto-escalate overdue → end-to-end audit trail; all five work-order actions are audited — going beyond \"the model can detect\".",
+            "Self-built constrained Plan-and-Execute kernel (ReAct explicitly rejected): the LLM appears only at planning and summarization, with step-count + wall-clock dual deadlines forcing convergence; failed plan parsing is truncated rather than completed — the LLM never continues writing; steps are idempotent and failures still leave traces.",
+            "Three-layer prompt-injection guardrails: tool allowlist, arg-schema re-validation, and structured return constraints; the permission scope (user_id/role) is injected by server-side code, so a forged identity is structurally ineffective at the permission layer; side-effect tools force human confirmation even when the LLM claims none is needed.",
+            "GPU-free edge vision engineering: self-trained YOLOv8 exported to ONNX, CPU inference via ONNX Runtime + INT8 quantization; two false-positive rules (low-confidence smoke × protective-equipment spatial conflict, PPE contradiction boxes); 10-class hazard allowlist, config-driven across scenarios.",
+            "Reliability and dual loops: four-level degradation chain (cloud → local Ollama → rule templates → human, degraded ≠ failed) with a circuit breaker; risk grades come from a detect × compliance lookup table — the LLM never decides severity; manual correction → training samples → retraining → evaluation → model switch."
           ],
           "link": "https://github.com/duk-destiny/Smart-Construction-Site-Guardian"
         },
@@ -185,7 +187,7 @@
           "points": [
             "Built a governance-oriented medical Q&A agent on LangGraph: hybrid retrieval (Vector + BM25) plus knowledge graph multi-hop reasoning, going beyond single-hop retrieval limits.",
             "A three-tier memory system (short-term context / vector event memory / structured profile) supports personalized continuous consultations.",
-            "Role-isolated access control for health records plus compliance guardrails ensure traceable, auditable answers; iteratively optimized with RAGAS evaluation."
+            "Role-isolated access control for health records plus an answer-level compliance gate ensure traceable, auditable answers. RAGAS: context_recall & context_precision 1.00, faithfulness 0.95, answer_relevancy 0.92."
           ],
           "link": "https://github.com/duk-destiny/RAG-Medical-Assistant"
         },
